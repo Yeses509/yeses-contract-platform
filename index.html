@@ -222,6 +222,9 @@ $('contentProvided').value=contentDefaults.en;document.querySelectorAll('[data-l
 function go(){if(window.__YS_REP){var d=document.createElement('div');d.setAttribute('style','background:#0d1319;color:#fff;font:600 13px system-ui;padding:8px 14px;text-align:center');d.textContent='YESES SOLUTION · Sales rep: '+window.__YS_REP;document.body.insertBefore(d,document.body.firstChild)}
 q.forEach(function(v,k){if(k==='rep')return;var el=document.getElementById(k);if(el&&('value' in el)){el.value=v;el.dispatchEvent(new Event('input',{bubbles:true}));el.dispatchEvent(new Event('change',{bubbles:true}))}})}
 if(document.readyState!=='loading')go();else document.addEventListener('DOMContentLoaded',go)})();
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('#submitContract');if(!b||b.disabled)return;
+var gv=function(id){var el=document.getElementById(id);return el?String(el.value||''):''};
+try{parent.postMessage({type:'ys-contract-submit',agreement:gv('agreementNo'),client:gv('clientLegalName'),email:gv('clientEmail'),pkg:gv('packagePrice'),rep:window.__YS_REP||'',ts:Date.now()},'*')}catch(x){}},true);
 </script>
 </body>
 </html>
